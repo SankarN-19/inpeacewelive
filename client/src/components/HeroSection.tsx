@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
-import heroImage from "@assets/stock_images/peaceful_forest_medi_4ae0c763.jpg";
+import heroImage from "@assets/stock_images/Peaceful_forest_meditation_background_1644458d.png";
 
 export default function HeroSection() {
   const scrollToAbout = () => {

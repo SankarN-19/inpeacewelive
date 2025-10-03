@@ -28,6 +28,7 @@ export default function Header() {
     { label: "Journey", id: "journey" },
     { label: "Experience", id: "experience" },
     { label: "Testimonials", id: "testimonials" },
+    { label: "Gallery", id: "gallery" },
     { label: "Contact", id: "contact" },
   ];
 
