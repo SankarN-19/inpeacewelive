@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
-import profileImage from "@assets/generated_images/Professional_portrait_photo_8c26cbbb.png";
-import logoImage from "@assets/generated_images/Light_in_darkness_concept_835da7e7.png";
+import profileImage from "@assets/stock_images/professional_portrai_aeae0cec.jpg";
+import logoImage from "@assets/stock_images/light_in_darkness_co_5cdb1777.jpg";
 
 export default function AboutSection() {
   return (
