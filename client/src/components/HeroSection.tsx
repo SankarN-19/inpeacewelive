@@ -21,19 +21,19 @@ export default function HeroSection() {
           backgroundImage: `url(${heroImage})`,
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/50 to-background/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-background/40" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-8 text-center">
         <div className="animate-fade-in-up">
           <h1 className="font-serif text-6xl md:text-8xl font-light text-primary-foreground mb-6 tracking-wide">
             سلام
           </h1>
-          <h1 className="font-serif text-4xl md:text-6xl font-light text-primary-foreground/90 mb-4">
+          <h1 className="font-serif text-6xl md:text-8xl font-light text-primary-foreground/90 mb-4">
             Salam
           </h1>
-          <p className="font-serif text-xl md:text-2xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed mb-12">
+          <p className="font-serif text-2xl md:text-3xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed mb-12">
             If you love adventure, animals, nature, mystery, hope, faith... then
-            you are in the right place
+            you are in the right place...
           </p>
           <Button
             size="lg"
@@ -51,7 +51,7 @@ export default function HeroSection() {
         className="absolute bottom-8 -translate-x-1/2 text-primary-foreground/60 hover:text-primary-foreground transition-colors animate-bounce"
         data-testid="button-scroll-indicator"
       >
-        <ChevronDown size={32} />
+        <ChevronDown size={50} />
       </button>
     </section>
   );

@@ -7,11 +7,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
-import galleryImage1 from "@assets/stock_images/peaceful_forest_medi_4ae0c763.jpg";
-import galleryImage2 from "@assets/stock_images/light_in_darkness_co_5cdb1777.jpg";
+import galleryImage1 from "@assets/stock_images/shouq3.png";
+import galleryImage2 from "@assets/stock_images/shouq5.png";
 import galleryImage3 from "@assets/generated_images/Peaceful_forest_meditation_background_1644458d.png";
-import galleryImage4 from "@assets/generated_images/Light_in_darkness_concept_835da7e7.png";
-import galleryImage5 from "@assets/stock_images/professional_portrai_aeae0cec.jpg";
+import galleryImage4 from "@assets/stock_images/shouq4.png";
+import galleryImage5 from "@assets/stock_images/shouq6.png";
 
 export default function GallerySection() {
   const images = [

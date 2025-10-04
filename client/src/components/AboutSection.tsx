@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
-import profileImage from "@assets/stock_images/professional_portrai_aeae0cec.jpg";
+import profileImage from "@assets/stock_images/shouq1.png";
 import logoImage from "@assets/stock_images/light_in_darkness_co_5cdb1777.jpg";
+
 
 export default function AboutSection() {
   return (
@@ -22,7 +23,7 @@ export default function AboutSection() {
                 </p>
                 <p>
                   My journey started in high school when I faced stress that
-                  hurt my health. I found meditation at age 15-16 years to help
+                  hurt my health. I found meditation at the age of 15 to help
                   me relieve stress. Then I graduated to face more than just
                   stress—studying abroad, life-changing decision making,
                   channelings, pain, frustrations, loss, and disappointment.
@@ -46,15 +47,15 @@ export default function AboutSection() {
               </div>
             </div>
             {/* Moved the smaller card here */}
-            <Card className="p-6 space-y-4">
-              <div className="flex justify-center">
+            <Card className="p-7 space-y-10 hover-elevate">
+              {/* <div className="flex justify-center">
                 <img
                   src={logoImage}
                   alt="In Peace We Live Logo"
                   className="w-20 h-20 rounded-lg"
                   data-testid="img-logo"
                 />
-              </div>
+              </div> */}
               <p className="text-sm md:text-base text-center text-muted-foreground italic leading-relaxed">
                 "In every dark moment there is light if you allow the darkness
                 to show you, and if you allow your old skin that doesn't serve
@@ -72,7 +73,7 @@ export default function AboutSection() {
               <img
                 src={profileImage}
                 alt="Shouq Alsulaiman"
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover"
                 data-testid="img-profile"
               />
             </Card>
