@@ -6,7 +6,8 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-20 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          {/* Left Column: Text and Quote Card */}
           <div className="space-y-8">
             <div>
               <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-6">
@@ -44,24 +45,13 @@ export default function AboutSection() {
                 </p>
               </div>
             </div>
-          </div>
-
-          <div className="space-y-6">
-            <Card className="overflow-hidden hover-elevate">
-              <img
-                src={profileImage}
-                alt="Shouq Alsulaiman"
-                className="w-full h-auto object-cover"
-                data-testid="img-profile"
-              />
-            </Card>
-
+            {/* Moved the smaller card here */}
             <Card className="p-6 space-y-4">
               <div className="flex justify-center">
                 <img
                   src={logoImage}
                   alt="In Peace We Live Logo"
-                  className="w-32 h-32 rounded-lg"
+                  className="w-20 h-20 rounded-lg"
                   data-testid="img-logo"
                 />
               </div>
@@ -73,6 +63,18 @@ export default function AboutSection() {
               <p className="text-center text-foreground font-medium">
                 If you are ready, I am here to guide you in this journey.
               </p>
+            </Card>
+          </div>
+
+          {/* Right Column: Profile Image Only */}
+          <div className="space-y-6">
+            <Card className="overflow-hidden hover-elevate">
+              <img
+                src={profileImage}
+                alt="Shouq Alsulaiman"
+                className="w-full h-auto object-cover"
+                data-testid="img-profile"
+              />
             </Card>
           </div>
         </div>

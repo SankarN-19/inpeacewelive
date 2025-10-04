@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoImage from "@assets/stock_images/image.png";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,15 +45,18 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           <button
             onClick={() => scrollToSection("hero")}
-            className="flex flex-col hover-elevate active-elevate-2 rounded-md p-2 -ml-2"
+            className="flex items-center gap-3 hover-elevate active-elevate-2 rounded-md p-2 -ml-2 text-left"
             data-testid="link-home"
           >
-            <span className="font-serif text-2xl font-light text-foreground">
-              In Peace We Live
-            </span>
-            <span className="text-xs text-muted-foreground italic">
-              سلام - Peace
-            </span>
+            {/* <img src={logoImage} alt="In Peace We Live Logo" className="h-12 w-auto" /> */}
+            <div className="flex flex-col">
+                <span className="font-serif text-xl font-light text-foreground">
+                  In Peace We Live
+                </span>
+                <span className="text-xs text-muted-foreground italic">
+                  سلام - Peace
+                </span>
+            </div>
           </button>
 
           <nav className="hidden md:flex items-center gap-2">

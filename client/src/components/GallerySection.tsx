@@ -1,3 +1,4 @@
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -34,8 +35,16 @@ export default function GallerySection() {
         </div>
 
         <Carousel
+          plugins={[
+            Autoplay({
+              delay: 2000,
+              stopOnInteraction: false,
+              stopOnMouseEnter: true,
+            }),
+          ]}
           opts={{
             align: "start",
+            loop: true,
           }}
           className="w-full"
         >
@@ -56,8 +65,26 @@ export default function GallerySection() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          {/* <CarouselPrevious className="left-4 bg-background/50 hover:bg-background/80" />
-          <CarouselNext className="right-4 bg-background/50 hover:bg-background/80" /> */}
+          <CarouselPrevious
+            className="bg-background/100 hover:bg-background/75"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '16px',
+              transform: 'translateY(-50%)',
+              zIndex: 10,
+            }}
+          />
+          <CarouselNext
+            className="bg-background/100 hover:bg-background/75"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              right: '16px',
+              transform: 'translateY(-50%)',
+              zIndex: 10,
+            }}
+          />
         </Carousel>
       </div>
     </section>

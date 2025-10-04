@@ -21,17 +21,17 @@ export default function HeroSection() {
           backgroundImage: `url(${heroImage})`,
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background/95" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/50 to-background/50" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-8 text-center">
         <div className="animate-fade-in-up">
           <h1 className="font-serif text-6xl md:text-8xl font-light text-primary-foreground mb-6 tracking-wide">
             سلام
           </h1>
-          <p className="font-serif text-3xl md:text-4xl font-light text-primary-foreground/90 mb-4">
+          <h1 className="font-serif text-4xl md:text-6xl font-light text-primary-foreground/90 mb-4">
             Salam
-          </p>
-          <p className="text-lg md:text-xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed mb-12">
+          </h1>
+          <p className="font-serif text-xl md:text-2xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed mb-12">
             If you love adventure, animals, nature, mystery, hope, faith... then
             you are in the right place
           </p>
@@ -48,7 +48,7 @@ export default function HeroSection() {
 
       <button
         onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary-foreground/60 hover:text-primary-foreground transition-colors animate-bounce"
+        className="absolute bottom-8 -translate-x-1/2 text-primary-foreground/60 hover:text-primary-foreground transition-colors animate-bounce"
         data-testid="button-scroll-indicator"
       >
         <ChevronDown size={32} />
