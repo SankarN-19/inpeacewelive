@@ -50,10 +50,10 @@ export default function Header() {
           >
             {/* <img src={logoImage} alt="In Peace We Live Logo" className="h-12 w-auto" /> */}
             <div className="flex flex-col">
-                <span className="font-serif text-xl font-light text-foreground">
+                <span className="font-serif text-2xl font-semibold text-foreground">
                   In Peace We Live
                 </span>
-                <span className="text-xs text-muted-foreground italic">
+                <span className="text-xs text-muted-foreground font-semibold italic">
                   سلام - Peace
                 </span>
             </div>

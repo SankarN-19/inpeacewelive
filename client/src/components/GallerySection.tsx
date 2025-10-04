@@ -9,7 +9,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import galleryImage1 from "@assets/stock_images/shouq3.png";
 import galleryImage2 from "@assets/stock_images/shouq5.png";
-import galleryImage3 from "@assets/generated_images/Peaceful_forest_meditation_background_1644458d.png";
+import galleryImage3 from "@assets/stock_images/shouq2.png";
 import galleryImage4 from "@assets/stock_images/shouq4.png";
 import galleryImage5 from "@assets/stock_images/shouq6.png";
 
