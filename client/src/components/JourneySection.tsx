@@ -66,7 +66,7 @@ export default function JourneySection() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-sm font-medium text-primary">
-                      Age {milestone.age}
+                      Age : {milestone.age}
                     </span>
                   </div>
                   <h3 className="text-xl font-medium text-foreground mb-2">

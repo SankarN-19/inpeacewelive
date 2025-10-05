@@ -108,6 +108,14 @@ export default {
           from: { opacity: "0", transform: "translateX(-20px)" },
           to: { opacity: "1", transform: "translateX(0)" },
         },
+        typing: {
+          "0%, 100%": { width: "0" },
+          "50%": { width: "100%" },
+        },
+        "blink-caret": {
+          "from, to": { borderColor: "transparent" },
+          "50%": { borderColor: "hsl(var(--foreground))" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -115,6 +123,7 @@ export default {
         "fade-in-up": "fade-in-up 0.6s ease-out",
         "fade-in": "fade-in 0.8s ease-out",
         "slide-in-right": "slide-in-right 0.5s ease-out",
+        // typing: "typing 3.5s steps(16, end) infinite, blink-caret .75s step-end infinite",
       },
     },
   },

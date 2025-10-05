@@ -1,9 +1,26 @@
 import { Card } from "@/components/ui/card";
 import profileImage from "@assets/stock_images/shouq1.png";
-import logoImage from "@assets/stock_images/light_in_darkness_co_5cdb1777.jpg";
-
+import { useEffect, useState } from "react";
+import { API_BASE_URL } from "@/api";
 
 export default function AboutSection() {
+  const [aboutContent, setAboutContent] = useState("");
+  const nameText = "Shouq Alsulaiman";
+
+  useEffect(() => {
+    const fetchAboutContent = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/about`);
+        const data = await response.json();
+        setAboutContent(data.content);
+      } catch (error) {
+        console.error("Failed to fetch about content:", error);
+      }
+    };
+
+    fetchAboutContent();
+  }, []);
+
   return (
     <section id="about" className="py-20 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
@@ -15,47 +32,18 @@ export default function AboutSection() {
                 About Me
               </h2>
               <div className="space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
-                <p>
-                  <span className="text-foreground font-medium">
-                    My name is Shouq Alsulaiman
-                  </span>
-                  , and I'm from Kuwait.
+                <p className="text-2xl md:text-xl">
+                My name is{" "}
+                <span className="text-foreground font-medium animate-subtle-pulse">{nameText}</span>, and I'm from <i>Kuwait.</i>
                 </p>
-                <p>
-                  My journey started in high school when I faced stress that
-                  hurt my health. I found meditation at the age of 15 to help
-                  me relieve stress. Then I graduated to face more than just
-                  stress—studying abroad, life-changing decision making,
-                  channelings, pain, frustrations, loss, and disappointment.
-                </p>
-                <p>
-                  I decided to go deep within myself, to see the unseen and
-                  hidden parts of self. I chose to take healing workshops and
-                  classes to help myself first, so I can now share my years of
-                  lessons and experiences with you with love.
-                </p>
-                <p className="text-foreground font-medium">
-                  I found out that we all can heal ourselves if we find a
-                  healthy, supportive community and individuals where we can be
-                  ourselves without fear of shame or fear.
-                </p>
-                <p>
-                  I host spaces online to connect and remind others they are not
-                  alone, and there is always a place within us that is filled
-                  with peace, bliss, and love.
-                </p>
+                {/* Split the content by newline and map to <p> tags */}
+                {aboutContent.split('\n').map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
               </div>
             </div>
-            {/* Moved the smaller card here */}
+            {/* ... rest of your component */}
             <Card className="p-7 space-y-10 hover-elevate">
-              {/* <div className="flex justify-center">
-                <img
-                  src={logoImage}
-                  alt="In Peace We Live Logo"
-                  className="w-20 h-20 rounded-lg"
-                  data-testid="img-logo"
-                />
-              </div> */}
               <p className="text-sm md:text-base text-center text-muted-foreground italic leading-relaxed">
                 "In every dark moment there is light if you allow the darkness
                 to show you, and if you allow your old skin that doesn't serve

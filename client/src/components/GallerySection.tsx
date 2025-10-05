@@ -7,20 +7,33 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
-import galleryImage1 from "@assets/stock_images/shouq3.png";
-import galleryImage2 from "@assets/stock_images/shouq5.png";
-import galleryImage3 from "@assets/stock_images/shouq2.png";
-import galleryImage4 from "@assets/stock_images/shouq4.png";
-import galleryImage5 from "@assets/stock_images/shouq6.png";
+import { useEffect, useState } from "react";
+import { API_BASE_URL } from "@/api";
+
+
+interface GalleryImage {
+  _id: string;
+  imageUrl: string;
+  caption: string;
+}
 
 export default function GallerySection() {
-  const images = [
-    galleryImage1,
-    galleryImage2,
-    galleryImage3,
-    galleryImage4,
-    galleryImage5,
-  ];
+  const [images, setImages] = useState<GalleryImage[]>([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/gallery`);
+        const data = await response.json();
+        setImages(data);
+      } catch (error) {
+        console.error("Failed to fetch gallery images:", error);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
 
   return (
     <section id="gallery" className="py-20 md:py-32 bg-card">
@@ -30,7 +43,7 @@ export default function GallerySection() {
             Gallery
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            A collection of moments and inspirations from our journey.
+            A collection of moments and inspirations from our journey...
           </p>
         </div>
 
@@ -49,14 +62,14 @@ export default function GallerySection() {
           className="w-full"
         >
           <CarouselContent>
-            {images.map((src, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+            {images.map((image) => (
+              <CarouselItem key={image._id} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1">
                   <Card>
                     <CardContent className="flex aspect-square items-center justify-center p-0">
                       <img
-                        src={src}
-                        alt={`Gallery image ${index + 1}`}
+                        src={image.imageUrl}
+                        alt={image.caption}
                         className="w-full h-full object-cover rounded-lg"
                       />
                     </CardContent>

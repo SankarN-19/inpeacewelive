@@ -1,45 +1,32 @@
 import { Card } from "@/components/ui/card";
 import { GraduationCap, Award, BookOpen } from "lucide-react";
 
+import { API_BASE_URL } from "@/api";
+import { useEffect, useState } from "react";
+
 interface Certification {
-  title: string;
+  _id: string;
+  name: string;
   date: string;
-  status?: string;
+  inProgress: boolean;
 }
 
 export default function ExperienceSection() {
-  const certifications: Certification[] = [
-    {
-      title: "Internationally Certified Self-Love Master Practitioner & Coach",
-      date: "Oct 2023",
-    },
-    {
-      title: "50-Hour Meditation Teacher Training",
-      date: "Nov 2023",
-    },
-    {
-      title:
-        "Internationally Certified Soul School Practitioner of Channeling & Channel Writing",
-      date: "March 2024",
-    },
-    {
-      title: "Internationally Certified Life Transition Counselor & Coach",
-      date: "Nov 2023",
-    },
-    {
-      title: "Self-Confidence & Empowerment Coach",
-      date: "Oct 2023",
-    },
-    {
-      title: "Alchemy of Meditation (Meditation Training Course)",
-      date: "March 2024",
-    },
-    {
-      title: "Ancestral Healing",
-      date: "In Progress",
-      status: "Diploma in Progress",
-    },
-  ];
+  const [certifications, setCertifications] = useState<Certification[]>([]);
+
+  useEffect(() => {
+    const fetchCertifications = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/experience`);
+        const data = await response.json();
+        setCertifications(data);
+      } catch (error) {
+        console.error("Failed to fetch certifications:", error);
+      }
+    };
+
+    fetchCertifications();
+  }, []);
 
   return (
     <section id="experience" className="py-20 md:py-32 bg-background">
@@ -77,15 +64,15 @@ export default function ExperienceSection() {
           </Card>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {certifications.map((cert, index) => (
+            {certifications.map((cert) => (
               <Card
-                key={index}
+                key={cert._id}
                 className="p-6 space-y-3 hover-elevate active-elevate-2 transition-all duration-300"
-                data-testid={`card-certification-${index}`}
+                data-testid={`card-certification-${cert._id}`}
               >
                 <div className="flex items-start gap-3">
                   <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                    {cert.status ? (
+                    {cert.inProgress ? (
                       <BookOpen className="w-5 h-5" />
                     ) : (
                       <Award className="w-5 h-5" />
@@ -93,16 +80,11 @@ export default function ExperienceSection() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="text-base font-medium text-foreground mb-2 leading-snug">
-                      {cert.title}
+                      {cert.name}
                     </h4>
                     <p className="text-sm text-primary font-medium">
-                      {cert.date}
+                      {cert.inProgress ? "In Progress" : new Date(cert.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
                     </p>
-                    {cert.status && (
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {cert.status}
-                      </p>
-                    )}
                   </div>
                 </div>
               </Card>

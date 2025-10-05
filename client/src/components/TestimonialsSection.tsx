@@ -1,51 +1,31 @@
 import { Card } from "@/components/ui/card";
 import { Quote } from "lucide-react";
+import { useEffect, useState } from "react";
+import { API_BASE_URL } from "@/api";
 
 interface Testimonial {
-  quote: string;
-  author: string;
-  session: string;
+  _id: string;
+  name: string;
+  comment: string;
+  activityPackage: string;
 }
 
 export default function TestimonialsSection() {
-  const testimonials: Testimonial[] = [
-    {
-      quote:
-        "The meditation session brought me peace I haven't felt in years. Shouq's gentle guidance helped me reconnect with my inner self.",
-      author: "Sarah M.",
-      session: "Stress Relief Meditation",
-    },
-    {
-      quote:
-        "Through channeling, I discovered parts of myself I didn't know existed. This journey of self-discovery has been truly transformative.",
-      author: "Fatima K.",
-      session: "Channeling Session",
-    },
-    {
-      quote:
-        "The energy cleansing session was exactly what I needed. I felt lighter and more aligned with my true purpose after our time together.",
-      author: "Maya R.",
-      session: "Energy Cleansing",
-    },
-    {
-      quote:
-        "Shouq creates a safe space where I can be vulnerable and authentic. Her compassion and wisdom have helped me navigate difficult transitions.",
-      author: "Layla A.",
-      session: "Life Transition Counseling",
-    },
-    {
-      quote:
-        "The heart activation meditation opened doors I didn't know were closed. I'm forever grateful for this beautiful experience.",
-      author: "Noor H.",
-      session: "Heart Activation",
-    },
-    {
-      quote:
-        "Working with Shouq has taught me that healing is not just possible—it's within reach when we allow ourselves to be guided with love.",
-      author: "Amina S.",
-      session: "Self-Love Coaching",
-    },
-  ];
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/testimonial`);
+        const data = await response.json();
+        setTestimonials(data);
+      } catch (error) {
+        console.error("Failed to fetch testimonials:", error);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
 
   return (
     <section id="testimonials" className="py-20 md:py-32 bg-card">
@@ -55,27 +35,27 @@ export default function TestimonialsSection() {
             Client Testimonials
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Voices of transformation and healing
+            Voices of transformation and healing...
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial) => (
             <Card
-              key={index}
+              key={testimonial._id}
               className="p-6 space-y-4 hover-elevate active-elevate-2 transition-all duration-300"
-              data-testid={`card-testimonial-${index}`}
+              data-testid={`card-testimonial-${testimonial._id}`}
             >
               <Quote className="w-8 h-8 text-primary/30" />
               <p className="text-muted-foreground leading-relaxed italic">
-                "{testimonial.quote}"
+                "{testimonial.comment}"
               </p>
               <div className="pt-2 border-t border-border">
                 <p className="font-medium text-foreground">
-                  {testimonial.author}
+                  {testimonial.name}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  {testimonial.session}
+                  {testimonial.activityPackage}
                 </p>
               </div>
             </Card>

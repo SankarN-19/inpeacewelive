@@ -14,7 +14,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-2">
-            <p className="font-serif text-2xl font-light text-foreground">
+            <p className="font-serif text-2xl font-semibold text-foreground">
               In Peace We Live
             </p>
             <p className="text-sm text-muted-foreground italic">
