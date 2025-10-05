@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Heart, Sparkles, Globe, Lightbulb } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface JourneyMilestone {
   age: string;
@@ -9,6 +10,7 @@ interface JourneyMilestone {
 }
 
 export default function JourneySection() {
+  const { t } = useTranslation();
   const milestones: JourneyMilestone[] = [
     {
       age: "15-16",
@@ -45,10 +47,10 @@ export default function JourneySection() {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-6">
-            My Journey
+            {t("my_journey")}
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            A path of self-discovery, healing, and transformation
+            {t("journey_subtitle")}
           </p>
         </div>
 

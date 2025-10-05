@@ -2,10 +2,12 @@ import { Card } from "@/components/ui/card";
 import profileImage from "@assets/stock_images/shouq1.png";
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "@/api";
+import { useTranslation } from "react-i18next";
 
 export default function AboutSection() {
   const [aboutContent, setAboutContent] = useState("");
   const nameText = "Shouq Alsulaiman";
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchAboutContent = async () => {
@@ -29,12 +31,12 @@ export default function AboutSection() {
           <div className="space-y-8">
             <div>
               <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-6">
-                About Me
+                {t("about_me")}
               </h2>
               <div className="space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
                 <p className="text-2xl md:text-xl">
-                My name is{" "}
-                <span className="text-foreground font-medium animate-subtle-pulse">{nameText}</span>, and I'm from <i>Kuwait.</i>
+                {t("my_name_is")}{" "}
+                <span className="text-foreground font-medium animate-subtle-pulse">{t("shouq_alsulaiman_name")}</span>, {t("and_i_am_from")} <i>{t("kuwait")}</i>
                 </p>
                 {/* Split the content by newline and map to <p> tags */}
                 {aboutContent.split('\n').map((paragraph, index) => (
@@ -45,12 +47,10 @@ export default function AboutSection() {
             {/* ... rest of your component */}
             <Card className="p-7 space-y-10 hover-elevate">
               <p className="text-sm md:text-base text-center text-muted-foreground italic leading-relaxed">
-                "In every dark moment there is light if you allow the darkness
-                to show you, and if you allow your old skin that doesn't serve
-                you to fall, you will feel alive again."
+                "{t("dark_moment_quote")}"
               </p>
               <p className="text-center text-foreground font-medium">
-                If you are ready, I am here to guide you in this journey.
+                "{t("guide_you_quote")}"
               </p>
             </Card>
           </div>

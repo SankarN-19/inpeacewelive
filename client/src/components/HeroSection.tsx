@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@assets/stock_images/fig1shouq.png";
+import { useTranslation } from "react-i18next";
 
 export default function HeroSection() {
+  const { t } = useTranslation();
+
   const scrollToAbout = () => {
     const element = document.getElementById("about");
     if (element) {
@@ -26,14 +29,10 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-8 text-center">
         <div className="animate-fade-in-up">
           <h1 className="font-serif text-6xl md:text-8xl font-light text-primary-foreground mb-6 tracking-wide">
-            سلام
-          </h1>
-          <h1 className="font-serif text-6xl md:text-8xl font-light text-primary-foreground/90 mb-4">
-            Salam
+            {t("salam")}
           </h1>
           <p className="font-serif text-2xl md:text-3xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed mb-12">
-            If you love adventure, animals, nature, mystery, hope, faith... then
-            you are in the right place...
+            {t("salam_greeting")}
           </p>
           <Button
             size="lg"
@@ -41,7 +40,7 @@ export default function HeroSection() {
             className="bg-primary/90 hover:bg-primary text-primary-foreground backdrop-blur-sm"
             data-testid="button-begin-journey"
           >
-            Begin Your Journey
+            {t("begin_journey")}
           </Button>
         </div>
       </div>

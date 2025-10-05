@@ -9,6 +9,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "@/api";
+import { useTranslation } from "react-i18next";
 
 
 interface GalleryImage {
@@ -18,6 +19,7 @@ interface GalleryImage {
 }
 
 export default function GallerySection() {
+  const { t } = useTranslation();
   const [images, setImages] = useState<GalleryImage[]>([]);
 
   useEffect(() => {
@@ -40,10 +42,10 @@ export default function GallerySection() {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-6">
-            Gallery
+            {t("gallery_title")}
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            A collection of moments and inspirations from our journey...
+            {t("gallery_subtitle")}
           </p>
         </div>
 

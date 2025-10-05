@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Quote } from "lucide-react";
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "@/api";
+import { useTranslation } from "react-i18next";
 
 interface Testimonial {
   _id: string;
@@ -11,6 +12,7 @@ interface Testimonial {
 }
 
 export default function TestimonialsSection() {
+  const {t} = useTranslation();
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
   useEffect(() => {
@@ -32,10 +34,10 @@ export default function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-6">
-            Client Testimonials
+            {t("client_testimonials")}
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Voices of transformation and healing...
+            {t("testimonials_subtitle")}
           </p>
         </div>
 

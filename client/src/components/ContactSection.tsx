@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Mail, Instagram, Heart } from "lucide-react";
 import { API_BASE_URL } from "@/api";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ContactInfo {
   email: string;
@@ -10,6 +11,7 @@ interface ContactInfo {
 }
 
 export default function ContactSection() {
+  const { t } = useTranslation();
   const [contactInfo, setContactInfo] = useState<ContactInfo | null>(null);
 
   useEffect(() => {
@@ -31,11 +33,10 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-6">
-            Let's Connect
+            {t("lets_connect")}
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Ready to begin your journey of self-discovery and healing? Reach out
-            and let's walk this path together.
+            {t("connect_subtitle")}
           </p>
         </div>
 
@@ -85,8 +86,7 @@ export default function ContactSection() {
               <div className="flex items-start gap-3 text-sm text-muted-foreground">
                 <Heart className="w-5 h-5 flex-shrink-0 text-primary mt-0.5" />
                 <p className="leading-relaxed">
-                  Part of the cost of each session goes toward donation, and the
-                  donation receipt is sent to clients.
+                  {t("donation_note")}
                 </p>
               </div>
             </div>
@@ -97,15 +97,14 @@ export default function ContactSection() {
                 onClick={() => window.location.href = `mailto:${contactInfo?.email}`}
                 data-testid="button-contact"
               >
-                Send Me a Message
+                {t("send_message")}
               </Button>
             </div>
           </Card>
 
           <div className="text-center">
             <p className="text-muted-foreground italic">
-              "There is always a place within us that is filled with peace, bliss,
-              and love."
+              {t("peace_quote")}
             </p>
           </div>
         </div>

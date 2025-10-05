@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Globe, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoImage from "@assets/stock_images/image.png";
+import { useTranslation } from "react-i18next";
+import { changeLanguage } from "i18next";
+
 
 export default function Header() {
+  const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -24,13 +27,13 @@ export default function Header() {
   };
 
   const navItems = [
-    { label: "Home", id: "hero" },
-    { label: "About", id: "about" },
-    { label: "Journey", id: "journey" },
-    { label: "Experience", id: "experience" },
-    { label: "Testimonials", id: "testimonials" },
-    { label: "Gallery", id: "gallery" },
-    { label: "Contact", id: "contact" },
+    { label: t("home"), id: "hero" },
+    { label: t("about"), id: "about" },
+    { label: t("journey"), id: "journey" },
+    { label: t("experience"), id: "experience" },
+    { label: t("testimonials"), id: "testimonials" },
+    { label: t("gallery"), id: "gallery" },
+    { label: t("contact"), id: "contact" },
   ];
 
   return (
@@ -70,17 +73,36 @@ export default function Header() {
                 {item.label}
               </Button>
             ))}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() =>
+                changeLanguage(i18n.language === "en" ? "ar" : "en")
+              }
+            >
+              <Globe />
+            </Button>
           </nav>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            data-testid="button-mobile-menu"
-          >
-            {isMobileMenuOpen ? <X /> : <Menu />}
-          </Button>
+          <div className="flex items-center gap-2 md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() =>
+                changeLanguage(i18n.language === "en" ? "ar" : "en")
+              }
+            >
+              <Globe />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              data-testid="button-mobile-menu"
+            >
+              {isMobileMenuOpen ? <X /> : <Menu />}
+            </Button>
+          </div>
         </div>
       </div>
 
