@@ -5,22 +5,25 @@ import { API_BASE_URL } from "@/api";
 import { useTranslation } from "react-i18next";
 
 export default function AboutSection() {
-  const [aboutContent, setAboutContent] = useState("");
+  const [aboutData, setAboutData] = useState({
+    content: "",
+    profileImageUrl: "",
+  });
   const nameText = "Shouq Alsulaiman";
   const { t } = useTranslation();
 
   useEffect(() => {
-    const fetchAboutContent = async () => {
+    const fetchAboutData = async () => {
       try {
         const response = await fetch(`${API_BASE_URL}/about`);
         const data = await response.json();
-        setAboutContent(data.content);
+        setAboutData(data);
       } catch (error) {
         console.error("Failed to fetch about content:", error);
       }
     };
 
-    fetchAboutContent();
+    fetchAboutData();
   }, []);
 
   return (
@@ -39,9 +42,10 @@ export default function AboutSection() {
                 <span className="text-foreground font-medium animate-subtle-pulse">{t("shouq_alsulaiman_name")}</span>, {t("and_i_am_from")} <i>{t("kuwait")}</i>
                 </p>
                 {/* Split the content by newline and map to <p> tags */}
-                {aboutContent.split('\n').map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
+                {aboutData.content &&
+                  aboutData.content
+                    .split("\n")
+                    .map((paragraph, index) => <p key={index}>{paragraph}</p>)}
               </div>
             </div>
             {/* ... rest of your component */}
@@ -58,12 +62,14 @@ export default function AboutSection() {
           {/* Right Column: Profile Image Only */}
           <div className="space-y-6">
             <Card className="overflow-hidden hover-elevate">
-              <img
-                src={profileImage}
-                alt="Shouq Alsulaiman"
-                className="w-full h-full object-cover"
-                data-testid="img-profile"
-              />
+              {aboutData.profileImageUrl && (
+                <img
+                  src={aboutData.profileImageUrl}
+                  alt="Shouq Alsulaiman"
+                  className="w-full h-full object-cover"
+                  data-testid="img-profile"
+                />
+              )}
             </Card>
           </div>
         </div>

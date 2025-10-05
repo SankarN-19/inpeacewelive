@@ -19,7 +19,7 @@ interface GalleryImage {
 }
 
 export default function GallerySection() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [images, setImages] = useState<GalleryImage[]>([]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function GallerySection() {
     };
 
     fetchImages();
-  }, []);
+  }, [i18n.language]);
 
 
   return (
@@ -60,6 +60,7 @@ export default function GallerySection() {
           opts={{
             align: "start",
             loop: true,
+            direction: i18n.dir(),
           }}
           className="w-full"
         >

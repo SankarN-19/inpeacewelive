@@ -2,9 +2,32 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@assets/stock_images/fig1shouq.png";
 import { useTranslation } from "react-i18next";
+import { API_BASE_URL } from "@/api";
+import { useEffect, useState } from "react";
 
 export default function HeroSection() {
   const { t } = useTranslation();
+
+  const [heroData, setHeroData] = useState({
+    title: "",
+    subtitle: "",
+    backgroundImageUrl: "",
+  });
+
+  // useEffect hook to fetch data when the component mounts
+  useEffect(() => {
+    const fetchHeroData = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/hero`);
+        const data = await response.json();
+        setHeroData(data);
+      } catch (error) {
+        console.error("Failed to fetch hero data:", error);
+      }
+    };
+
+    fetchHeroData();
+  }, []);
 
   const scrollToAbout = () => {
     const element = document.getElementById("about");
@@ -21,7 +44,9 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url(${heroImage})`,
+          backgroundImage: heroData.backgroundImageUrl
+            ? `url(${heroData.backgroundImageUrl})`
+            : "none",
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-background/40" />
@@ -29,10 +54,10 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-8 text-center">
         <div className="animate-fade-in-up">
           <h1 className="font-serif text-6xl md:text-8xl font-light text-primary-foreground mb-6 tracking-wide">
-            {t("salam")}
+            {heroData.title || t("salam")}
           </h1>
           <p className="font-serif text-2xl md:text-3xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed mb-12">
-            {t("salam_greeting")}
+            {heroData.subtitle || t("salam_greeting")}
           </p>
           <Button
             size="lg"
