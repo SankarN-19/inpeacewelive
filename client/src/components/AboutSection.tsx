@@ -42,10 +42,10 @@ export default function AboutSection() {
                 {t("about_me")}
               </h2>
               <div className="space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
-                <p className="text-2xl md:text-xl">
+                {/* <p className="text-2xl md:text-xl">
                   {t("my_name_is")}{" "}
                   <span className="text-foreground font-medium animate-subtle-pulse">{t("shouq_alsulaiman_name")}</span>, {t("and_i_am_from")} <i>{t("kuwait")}</i>
-                </p>
+                </p> */}
                 {content.split("\n").map((paragraph, index) => <p key={index}>{paragraph}</p>)}
               </div>
             </div>
