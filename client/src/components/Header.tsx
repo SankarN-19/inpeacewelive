@@ -1,9 +1,8 @@
+// client/src/components/Header.tsx
 import { useState, useEffect } from "react";
 import { Globe, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import { changeLanguage } from "i18next";
-
 
 export default function Header() {
   const { t, i18n } = useTranslation();
@@ -24,6 +23,11 @@ export default function Header() {
       element.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
     }
+  };
+
+  const changeLanguage = () => {
+    const newLang = i18n.language.startsWith("en") ? "ar" : "en";
+    i18n.changeLanguage(newLang);
   };
 
   const navItems = [
@@ -51,14 +55,13 @@ export default function Header() {
             className="flex items-center gap-3 hover-elevate active-elevate-2 rounded-md p-2 -ml-2 text-left"
             data-testid="link-home"
           >
-            {/* <img src={logoImage} alt="In Peace We Live Logo" className="h-12 w-auto" /> */}
             <div className="flex flex-col">
-                <span className="font-serif text-2xl font-semibold text-foreground">
-                  In Peace We Live
-                </span>
-                <span className="text-xs text-muted-foreground font-semibold italic">
-                  سلام - Peace
-                </span>
+              <span className="font-serif text-2xl font-semibold text-foreground">
+                In Peace We Live
+              </span>
+              <span className="text-xs text-muted-foreground font-semibold italic">
+                سلام - Peace
+              </span>
             </div>
           </button>
 
@@ -73,26 +76,14 @@ export default function Header() {
                 {item.label}
               </Button>
             ))}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() =>
-                changeLanguage(i18n.language === "en" ? "ar" : "en")
-              }
-            >
-              <Globe />
+            <Button variant="outline" onClick={changeLanguage} className="border-2">
+              {i18n.language.startsWith("en") ? "العربية" : "English"}
             </Button>
           </nav>
 
           <div className="flex items-center gap-2 md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() =>
-                changeLanguage(i18n.language === "en" ? "ar" : "en")
-              }
-            >
-              <Globe />
+            <Button variant="outline" onClick={changeLanguage} className="border-2">
+              {i18n.language.startsWith("en") ? "العربية" : "English"}
             </Button>
             <Button
               variant="ghost"
