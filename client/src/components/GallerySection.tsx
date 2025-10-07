@@ -34,7 +34,7 @@ export default function GallerySection() {
     };
 
     fetchImages();
-  }, [i18n.language]);
+  }, []);
 
 
   return (
@@ -50,6 +50,7 @@ export default function GallerySection() {
         </div>
 
         <Carousel
+        key={i18n.language}
           plugins={[
             Autoplay({
               delay: 2000,
