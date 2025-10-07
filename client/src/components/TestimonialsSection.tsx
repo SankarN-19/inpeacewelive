@@ -35,7 +35,7 @@ export default function TestimonialsSection() {
     fetchTestimonials();
   }, []);
 
-  const currentLanguage = i18n.language as keyof Testimonial['comment'];
+  const currentLanguage = i18n.language.split('-')[0] as keyof Testimonial['comment'];
 
   return (
     <section id="testimonials" className="py-20 md:py-32 bg-card">

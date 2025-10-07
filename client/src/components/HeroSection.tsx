@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
-import heroImage from "@assets/stock_images/fig1shouq.png";
 import { useTranslation } from "react-i18next";
 import { API_BASE_URL } from "@/api";
 import { useEffect, useState } from "react";
@@ -19,10 +18,8 @@ interface HeroData {
 
 export default function HeroSection() {
   const { t, i18n } = useTranslation();
-
   const [heroData, setHeroData] = useState<HeroData | null>(null);
 
-  // useEffect hook to fetch data when the component mounts
   useEffect(() => {
     const fetchHeroData = async () => {
       try {
@@ -33,7 +30,6 @@ export default function HeroSection() {
         console.error("Failed to fetch hero data:", error);
       }
     };
-
     fetchHeroData();
   }, []);
 
@@ -44,7 +40,9 @@ export default function HeroSection() {
     }
   };
 
-  const currentLanguage = i18n.language as keyof HeroData['title'];
+  const currentLanguage = i18n.language.split('-')[0] as keyof HeroData['title'];
+  const title = heroData ? heroData.title[currentLanguage] : t("salam");
+  const subtitle = heroData ? heroData.subtitle[currentLanguage] : t("salam_greeting");
 
   return (
     <section
@@ -64,10 +62,10 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-8 text-center">
         <div className="animate-fade-in-up">
           <h1 className="font-serif text-6xl md:text-8xl font-light text-primary-foreground mb-6 tracking-wide">
-            {heroData ? heroData.title[currentLanguage] : t("salam")}
+            {title}
           </h1>
           <p className="font-serif text-2xl md:text-3xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed mb-12">
-            {heroData ? heroData.subtitle[currentLanguage] : t("salam_greeting")}
+            {subtitle}
           </p>
           <Button
             size="lg"

@@ -32,7 +32,7 @@ export default function ExperienceSection() {
     fetchCertifications();
   }, []);
 
-  const currentLanguage = i18n.language as keyof Certification['name'];
+  const currentLanguage = i18n.language.split('-')[0] as keyof Certification['name'];
 
   return (
     <section id="experience" className="py-20 md:py-32 bg-background">

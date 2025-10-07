@@ -29,13 +29,13 @@ export default function AboutSection() {
     fetchAboutData();
   }, []);
 
-  const currentLanguage = i18n.language as keyof AboutData['content'];
+  const currentLanguage = i18n.language.split('-')[0] as keyof AboutData['content'];
+  const content = aboutData ? aboutData.content[currentLanguage] : "";
 
   return (
     <section id="about" className="py-20 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Left Column: Text and Quote Card */}
           <div className="space-y-8">
             <div>
               <h2 className="font-serif text-4xl md:text-5xl font-light text-foreground mb-6">
@@ -46,15 +46,10 @@ export default function AboutSection() {
                   {t("my_name_is")}{" "}
                   <span className="text-foreground font-medium animate-subtle-pulse">{t("shouq_alsulaiman_name")}</span>, {t("and_i_am_from")} <i>{t("kuwait")}</i>
                 </p>
-                {/* Split the content by newline and map to <p> tags */}
-                {aboutData &&
-                  aboutData.content[currentLanguage] &&
-                  aboutData.content[currentLanguage]
-                    .split("\n")
-                    .map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+                {content.split("\n").map((paragraph, index) => <p key={index}>{paragraph}</p>)}
               </div>
             </div>
-
+            
             <Card className="p-7 space-y-10 hover-elevate">
               <p className="text-sm md:text-base text-center text-muted-foreground italic leading-relaxed">
                 "{t("dark_moment_quote")}"
@@ -65,7 +60,6 @@ export default function AboutSection() {
             </Card>
           </div>
 
-          {/* Right Column: Profile Image Only */}
           <div className="space-y-6">
             <Card className="overflow-hidden hover-elevate">
               {aboutData?.profileImageUrl && (

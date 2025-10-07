@@ -46,8 +46,8 @@ export default function JourneySection() {
     fetchJourneyData();
   }, []);
 
-  const currentLanguage = i18n.language as keyof JourneyMilestone['title'];
-
+  const currentLanguage = i18n.language.split('-')[0] as keyof JourneyMilestone['title'];
+  
   return (
     <section id="journey" className="py-20 md:py-32 bg-card">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
