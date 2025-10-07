@@ -48,12 +48,13 @@ export default function AboutSection() {
                 </p>
                 {/* Split the content by newline and map to <p> tags */}
                 {aboutData &&
+                  aboutData.content[currentLanguage] &&
                   aboutData.content[currentLanguage]
                     .split("\n")
                     .map((paragraph, index) => <p key={index}>{paragraph}</p>)}
               </div>
             </div>
-            
+
             <Card className="p-7 space-y-10 hover-elevate">
               <p className="text-sm md:text-base text-center text-muted-foreground italic leading-relaxed">
                 "{t("dark_moment_quote")}"
