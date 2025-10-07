@@ -5,14 +5,22 @@ import { useTranslation } from "react-i18next";
 import { API_BASE_URL } from "@/api";
 import { useEffect, useState } from "react";
 
-export default function HeroSection() {
-  const { t } = useTranslation();
+interface HeroData {
+  title: {
+    en: string;
+    ar: string;
+  };
+  subtitle: {
+    en: string;
+    ar: string;
+  };
+  backgroundImageUrl: string;
+}
 
-  const [heroData, setHeroData] = useState({
-    title: "",
-    subtitle: "",
-    backgroundImageUrl: "",
-  });
+export default function HeroSection() {
+  const { t, i18n } = useTranslation();
+
+  const [heroData, setHeroData] = useState<HeroData | null>(null);
 
   // useEffect hook to fetch data when the component mounts
   useEffect(() => {
@@ -36,6 +44,8 @@ export default function HeroSection() {
     }
   };
 
+  const currentLanguage = i18n.language as keyof HeroData['title'];
+
   return (
     <section
       id="hero"
@@ -44,7 +54,7 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: heroData.backgroundImageUrl
+          backgroundImage: heroData?.backgroundImageUrl
             ? `url(${heroData.backgroundImageUrl})`
             : "none",
         }}
@@ -54,10 +64,10 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-8 text-center">
         <div className="animate-fade-in-up">
           <h1 className="font-serif text-6xl md:text-8xl font-light text-primary-foreground mb-6 tracking-wide">
-            {heroData.title || t("salam")}
+            {heroData ? heroData.title[currentLanguage] : t("salam")}
           </h1>
           <p className="font-serif text-2xl md:text-3xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed mb-12">
-            {heroData.subtitle || t("salam_greeting")}
+            {heroData ? heroData.subtitle[currentLanguage] : t("salam_greeting")}
           </p>
           <Button
             size="lg"

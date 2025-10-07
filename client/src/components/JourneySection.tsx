@@ -7,8 +7,14 @@ import { useTranslation } from "react-i18next";
 interface JourneyMilestone {
   _id: string;
   age: string;
-  title: string;
-  body: string;
+  title: {
+    en: string;
+    ar: string;
+  };
+  body: {
+    en: string;
+    ar: string;
+  };
 }
 
 const icons = [
@@ -24,6 +30,7 @@ const getIconForIndex = (index: number) => {
 
 export default function JourneySection() {
   const [milestones, setMilestones] = useState<JourneyMilestone[]>([]);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const fetchJourneyData = async () => {
@@ -39,8 +46,8 @@ export default function JourneySection() {
     fetchJourneyData();
   }, []);
 
-  const { t } = useTranslation();
-  
+  const currentLanguage = i18n.language as keyof JourneyMilestone['title'];
+
   return (
     <section id="journey" className="py-20 md:py-32 bg-card">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
@@ -71,10 +78,10 @@ export default function JourneySection() {
                     </span>
                   </div>
                   <h3 className="text-xl font-medium text-foreground mb-2">
-                    {milestone.title}
+                    {milestone.title[currentLanguage]}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    {milestone.body}
+                    {milestone.body[currentLanguage]}
                   </p>
                 </div>
               </div>

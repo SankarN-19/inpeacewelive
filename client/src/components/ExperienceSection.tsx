@@ -1,19 +1,21 @@
 import { Card } from "@/components/ui/card";
 import { GraduationCap, Award, BookOpen } from "lucide-react";
-
 import { API_BASE_URL } from "@/api";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 interface Certification {
   _id: string;
-  name: string;
+  name: {
+    en: string;
+    ar: string;
+  };
   date: string;
   inProgress: boolean;
 }
 
 export default function ExperienceSection() {
-  const {t} = useTranslation();
+  const {t, i18n} = useTranslation();
   const [certifications, setCertifications] = useState<Certification[]>([]);
 
   useEffect(() => {
@@ -29,6 +31,8 @@ export default function ExperienceSection() {
 
     fetchCertifications();
   }, []);
+
+  const currentLanguage = i18n.language as keyof Certification['name'];
 
   return (
     <section id="experience" className="py-20 md:py-32 bg-background">
@@ -79,7 +83,7 @@ export default function ExperienceSection() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="text-base font-medium text-foreground mb-2 leading-snug">
-                      {cert.name}
+                      {cert.name[currentLanguage]}
                     </h4>
                     <p className="text-sm text-primary font-medium">
                       {cert.inProgress ? "In Progress" : new Date(cert.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}

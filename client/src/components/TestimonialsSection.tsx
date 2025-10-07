@@ -7,12 +7,18 @@ import { useTranslation } from "react-i18next";
 interface Testimonial {
   _id: string;
   name: string;
-  comment: string;
-  activityPackage: string;
+  comment: {
+    en: string;
+    ar: string;
+  };
+  activityPackage: {
+    en: string;
+    ar: string;
+  };
 }
 
 export default function TestimonialsSection() {
-  const {t} = useTranslation();
+  const {t, i18n} = useTranslation();
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
   useEffect(() => {
@@ -28,6 +34,8 @@ export default function TestimonialsSection() {
 
     fetchTestimonials();
   }, []);
+
+  const currentLanguage = i18n.language as keyof Testimonial['comment'];
 
   return (
     <section id="testimonials" className="py-20 md:py-32 bg-card">
@@ -50,14 +58,14 @@ export default function TestimonialsSection() {
             >
               <Quote className="w-8 h-8 text-primary/30" />
               <p className="text-muted-foreground leading-relaxed italic">
-                "{testimonial.comment}"
+                "{testimonial.comment[currentLanguage]}"
               </p>
               <div className="pt-2 border-t border-border">
                 <p className="font-medium text-foreground">
                   {testimonial.name}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  {testimonial.activityPackage}
+                  {testimonial.activityPackage[currentLanguage]}
                 </p>
               </div>
             </Card>

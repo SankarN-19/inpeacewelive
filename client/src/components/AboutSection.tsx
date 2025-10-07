@@ -1,16 +1,19 @@
 import { Card } from "@/components/ui/card";
-import profileImage from "@assets/stock_images/shouq1.png";
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "@/api";
 import { useTranslation } from "react-i18next";
 
+interface AboutData {
+  content: {
+    en: string;
+    ar: string;
+  };
+  profileImageUrl: string;
+}
+
 export default function AboutSection() {
-  const [aboutData, setAboutData] = useState({
-    content: "",
-    profileImageUrl: "",
-  });
-  const nameText = "Shouq Alsulaiman";
-  const { t } = useTranslation();
+  const [aboutData, setAboutData] = useState<AboutData | null>(null);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const fetchAboutData = async () => {
@@ -26,6 +29,8 @@ export default function AboutSection() {
     fetchAboutData();
   }, []);
 
+  const currentLanguage = i18n.language as keyof AboutData['content'];
+
   return (
     <section id="about" className="py-20 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
@@ -38,17 +43,17 @@ export default function AboutSection() {
               </h2>
               <div className="space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
                 <p className="text-2xl md:text-xl">
-                {t("my_name_is")}{" "}
-                <span className="text-foreground font-medium animate-subtle-pulse">{t("shouq_alsulaiman_name")}</span>, {t("and_i_am_from")} <i>{t("kuwait")}</i>
+                  {t("my_name_is")}{" "}
+                  <span className="text-foreground font-medium animate-subtle-pulse">{t("shouq_alsulaiman_name")}</span>, {t("and_i_am_from")} <i>{t("kuwait")}</i>
                 </p>
                 {/* Split the content by newline and map to <p> tags */}
-                {aboutData.content &&
-                  aboutData.content
+                {aboutData &&
+                  aboutData.content[currentLanguage]
                     .split("\n")
                     .map((paragraph, index) => <p key={index}>{paragraph}</p>)}
               </div>
             </div>
-            {/* ... rest of your component */}
+            
             <Card className="p-7 space-y-10 hover-elevate">
               <p className="text-sm md:text-base text-center text-muted-foreground italic leading-relaxed">
                 "{t("dark_moment_quote")}"
@@ -62,7 +67,7 @@ export default function AboutSection() {
           {/* Right Column: Profile Image Only */}
           <div className="space-y-6">
             <Card className="overflow-hidden hover-elevate">
-              {aboutData.profileImageUrl && (
+              {aboutData?.profileImageUrl && (
                 <img
                   src={aboutData.profileImageUrl}
                   alt="Shouq Alsulaiman"
