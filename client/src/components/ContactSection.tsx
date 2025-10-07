@@ -76,7 +76,7 @@ export default function ContactSection() {
                     className="text-primary hover:underline"
                     data-testid="link-instagram"
                   >
-                    {contactInfo?.instagramHandle}
+                    @{contactInfo?.instagramHandle}
                   </a>
                 </div>
               </div>
